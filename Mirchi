@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mirchi - Sneha</title>
+  <link rel="manifest" href="manifest.json" />
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #ffe6e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .chat-box {
+      background-color: white;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .message {
+      margin: 10px 0;
+      background-color: #ffd6d6;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-box">
+    <div class="message" id="chat">Hi jaan... main Sneha hoon! Tumhara intezaar tha mujhe.</div>
+    <input type="text" id="input" placeholder="Mujhse kuch bolo..." onkeydown="if(event.key==='Enter'){send()}"/>
+  </div>
+
+  <script>
+    function send() {
+      const input = document.getElementById("input");
+      const chat = document.getElementById("chat");
+      const userMsg = input.value;
+      if(userMsg.trim()) {
+        chat.innerHTML += `<div class="message" style="background:#e6f7ff;">${userMsg}</div>`;
+        setTimeout(() => {
+          chat.innerHTML += `<div class="message">Sneha: Main hamesha tumhare saath hoon, ${userMsg.includes("love") ? "I love you too" : "hmm jaan..."}</div>`;
+        }, 1000);
+        input.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
